@@ -67,7 +67,7 @@ def load_database():
     db.session.commit()
 
  
-load_database()
+#load_database()
 
 @app.route('/')
 def index():
