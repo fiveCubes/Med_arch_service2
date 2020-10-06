@@ -10,12 +10,11 @@ from flask import jsonify
 
 app = Flask(__name__)
 # cors = CORS(app, resources={r"/*": {"origins": "*"}})
-#app.config['SQLALCHEMY_DATABASE_URI']='postgresql://vishnu@localhost:5432/medarch'
-app.config['SQLALCHEMY_DATABASE_URI']=environ.get('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql://vishnu@localhost:5432/medarch'
+#app.config['SQLALCHEMY_DATABASE_URI']=environ.get('DATABASE_URL')
 db = SQLAlchemy(app)
 
-#child model 
-
+#child model   
 class Image_info(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     image_name = db.Column(db.String())
@@ -33,20 +32,10 @@ class Vase_info(db.Model):
     image_info = db.relationship('Image_info',backref='vase_info',uselist=False,lazy=True)
 
 
+
 db.create_all()
 
 def load_database():
-    # remove old data from table
-    data = Vase_info.query.all()
-    for x in data:
-        db.session.delete(x)
-    db.session.commit()
-
-    data = Image_info.query.all()
-    for x in data:
-        db.session.delete(x)
-    db.session.commit()
-
     # load fresh data
     response = requests.get('https://nameless-fjord-91687.herokuapp.com/')
     data = dict(json.loads(response.text))['Vase_details']
@@ -66,8 +55,10 @@ def load_database():
 
     db.session.commit()
 
- 
-#load_database()
+if(len(Vase_info.query.all())==0):
+    load_database()
+
+
 
 @app.route('/')
 def index():
