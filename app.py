@@ -31,8 +31,6 @@ class Vase_info(db.Model):
     description = db.Column(db.String())
     image_info = db.relationship('Image_info',backref='vase_info',uselist=False,lazy=True)
 
-
-
 db.create_all()
 
  # load fresh data
@@ -56,10 +54,23 @@ def load_database():
     db.session.commit()
 
 #load data for the first time when table is empty.
-if(len(Vase_info.query.all())==0):
-    load_database()
 
 
+def clear_database():
+
+    vases = Vase_info.query.all()
+    images = Image_info.query.all()
+    for img in images:
+        db.session.delete(img)
+      
+    for vase in vases:
+        db.session.delete(vase)
+
+    db.session.commit()
+
+clear_database()
+
+load_database()
 
 @app.route('/')
 def index():
