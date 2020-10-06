@@ -35,6 +35,7 @@ db.create_all()
 
  # load fresh data
 def load_database():
+    print("loading database")
     response = requests.get('https://nameless-fjord-91687.herokuapp.com/')
     data = dict(json.loads(response.text))['Vase_details']
     for v in data:
@@ -57,7 +58,7 @@ def load_database():
 
 
 def clear_database():
-
+    print("clearing database")
     vases = Vase_info.query.all()
     images = Image_info.query.all()
     for img in images:
