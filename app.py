@@ -68,6 +68,7 @@ def clear_database():
 
     db.session.commit()
 
+#delete database
 clear_database()
 
 load_database()
