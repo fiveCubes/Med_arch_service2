@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask import send_file
+from os import environ
 #from flask_cors import CORS
 import requests
 import json
