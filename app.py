@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask import send_file
-from flask_cors import CORS
+#from flask_cors import CORS
 import requests
 import json
 import os
@@ -10,6 +10,7 @@ from flask import jsonify
 app = Flask(__name__)
 # cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app.config['SQLALCHEMY_DATABASE_URI']='postgresql://vishnu@localhost:5432/medarch'
+#app.config['SQLALCHEMY_DATABASE_URI']='environ.get('DATABASE_URL')'
 db = SQLAlchemy(app)
 
 #child model 
