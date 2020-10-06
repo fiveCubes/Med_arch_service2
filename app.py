@@ -16,12 +16,18 @@ db = SQLAlchemy(app)
 
 #child model   
 class Image_info(db.Model):
+    __mapper_args__ = {
+        'confirm_deleted_rows': False
+    }
     id = db.Column(db.Integer,primary_key=True)
     image_name = db.Column(db.String())
     vase_number = db.Column(db.Integer,db.ForeignKey('vase_info.vase_number'), nullable=False)
 
 #parent model add
 class Vase_info(db.Model):
+     __mapper_args__ = {
+        'confirm_deleted_rows': False
+    }
     vase_number = db.Column(db.Integer,primary_key=True)
     shape = db.Column(db.String())
     location= db.Column(db.String())
