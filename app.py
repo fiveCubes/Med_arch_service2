@@ -25,7 +25,7 @@ class Image_info(db.Model):
 
 #parent model add
 class Vase_info(db.Model):
-     __mapper_args__ = {
+    __mapper_args__ = {
         'confirm_deleted_rows': False
     }
     vase_number = db.Column(db.Integer,primary_key=True)
