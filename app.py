@@ -64,7 +64,7 @@ def load_database():
 
 
 def clear_database():
-    print("clearing database")
+   
     vases = Vase_info.query.all()
     images = Image_info.query.all()
     for img in images:
@@ -79,7 +79,6 @@ def clear_database():
 #delete database
 clear = clear_database()
 if(clear):
-    print("loading database")
     load_database()
 
 @app.route('/')
