@@ -20,7 +20,7 @@ class Image_info(db.Model):
     image_name = db.Column(db.String())
     vase_number = db.Column(db.Integer,db.ForeignKey('vase_info.vase_number'), nullable=False)
 
-#parent model
+#parent model add
 class Vase_info(db.Model):
     vase_number = db.Column(db.Integer,primary_key=True)
     shape = db.Column(db.String())
