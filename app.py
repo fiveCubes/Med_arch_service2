@@ -10,8 +10,8 @@ from flask import jsonify
 
 app = Flask(__name__)
 # cors = CORS(app, resources={r"/*": {"origins": "*"}})
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql://vishnu@localhost:5432/medarch'
-#app.config['SQLALCHEMY_DATABASE_URI']=environ.get('DATABASE_URL')
+#app.config['SQLALCHEMY_DATABASE_URI']='postgresql://vishnu@localhost:5432/medarch'
+app.config['SQLALCHEMY_DATABASE_URI']=environ.get('DATABASE_URL')
 db = SQLAlchemy(app)
 
 #child model   
@@ -35,8 +35,8 @@ class Vase_info(db.Model):
 
 db.create_all()
 
+ # load fresh data
 def load_database():
-    # load fresh data
     response = requests.get('https://nameless-fjord-91687.herokuapp.com/')
     data = dict(json.loads(response.text))['Vase_details']
     for v in data:
@@ -55,6 +55,7 @@ def load_database():
 
     db.session.commit()
 
+#load data for the first time when table is empty.
 if(len(Vase_info.query.all())==0):
     load_database()
 
