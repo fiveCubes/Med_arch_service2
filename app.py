@@ -71,7 +71,7 @@ def clear_database():
 #delete database
 clear_database()
 
-load_database()
+#load_database()
 
 @app.route('/')
 def index():
