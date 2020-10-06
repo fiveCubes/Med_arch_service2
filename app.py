@@ -67,11 +67,11 @@ def clear_database():
         db.session.delete(vase)
 
     db.session.commit()
+    return True
 
 #delete database
-#clear_database()
-
-load_database()
+if(clear_database()):
+    load_database()
 
 @app.route('/')
 def index():
