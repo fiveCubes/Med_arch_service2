@@ -77,7 +77,8 @@ def clear_database():
     return True
 
 #delete database
-if(clear_database()):
+clear = clear_database()
+if(clear):
     load_database()
 
 @app.route('/')
