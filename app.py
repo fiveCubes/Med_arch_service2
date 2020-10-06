@@ -15,6 +15,7 @@ app.config['SQLALCHEMY_DATABASE_URI']=environ.get('DATABASE_URL')
 db = SQLAlchemy(app)
 
 #child model 
+
 class Image_info(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     image_name = db.Column(db.String())
@@ -35,7 +36,7 @@ class Vase_info(db.Model):
 db.create_all()
 
 def load_database():
-    # remove old data
+    # remove old data from table
     data = Vase_info.query.all()
     for x in data:
         db.session.delete(x)
