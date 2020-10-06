@@ -111,4 +111,4 @@ def index():
 @app.route('/<image_name>')
 def getImage(image_name):
     img = f'converted_images/{image_name}'
-    return send_file(img,mimetype='image/gif')
+    return send_file(img,mimetype='image/gif') 
