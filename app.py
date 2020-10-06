@@ -80,7 +80,7 @@ def clear_database():
 clear = clear_database()
 if(clear):
     print("loading database")
-    #load_database()
+    load_database()
 
 @app.route('/')
 def index():
