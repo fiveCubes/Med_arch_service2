@@ -82,9 +82,9 @@ def clear_database():
     return True
 
 #delete database
-clear = clear_database()
-if(clear):
-    load_database()
+# clear = clear_database()
+# if(clear):
+#     load_database()
 
 @app.route('/')
 def index():
