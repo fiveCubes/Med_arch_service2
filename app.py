@@ -2,13 +2,14 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask import send_file
 from os import environ
-#from flask_cors import CORS
+from flask_cors import CORS
 import requests
 import json
 import os
 from flask import jsonify
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 # cors = CORS(app, resources={r"/*": {"origins": "*"}})
 #app.config['SQLALCHEMY_DATABASE_URI']='postgresql://vishnu@localhost:5432/medarch'
 app.config['SQLALCHEMY_DATABASE_URI']=environ.get('DATABASE_URL')
@@ -74,6 +75,10 @@ def clear_database():
         db.session.delete(vase)
 
     db.session.commit()
+
+    if (vase_info.query.all()):
+        return False
+
     return True
 
 #delete database
@@ -91,7 +96,7 @@ def index():
         mapped_data['id']= vase_number
         mapped_data['shape']=vase.shape
         mapped_data['location']= vase.location
-        mapped_data['description']=vase.location
+        mapped_data['description']=vase.description
         mapped_data['plate']=vase.plate
         mapped_data['dimension']=vase.dimension
         mapped_data['additional_info']=vase.additional_info
