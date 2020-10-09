@@ -76,7 +76,7 @@ def clear_database():
 
     db.session.commit()
 
-    if (vase_info.query.all()):
+    if (Vase_info.query.all()):
         return False
 
     return True
